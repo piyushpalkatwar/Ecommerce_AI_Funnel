@@ -1,4 +1,4 @@
-# Project 2: E-commerce AI Feature Funnel & Conversion Analysis
+# E-commerce AI Feature Funnel & Conversion Analysis
 
 ## Overview
 This project measures the real impact of AI-powered features — AI search, AI product recommendations, and an AI chatbot — on an e-commerce platform's conversion funnel. It compares AI-assisted sessions against non-AI sessions across every funnel stage, device type, traffic source, and product category to quantify exactly how much revenue AI features generate.
