@@ -1,14 +1,12 @@
--- ============================================================
--- PROJECT 2: E-commerce AI Feature Funnel & Conversion Analysis
+
+-- E-commerce AI Feature Funnel & Conversion Analysis
 -- Domain: E-commerce | Tools: SQL (PostgreSQL / SQLite compatible)
--- Analyst: Piyush Palkatwar | Date: 2026-06-30
+-- Analyst: Piyush Palkatwar | 
 -- Trend: Measuring ROI of AI-powered features (search, reco, chatbot)
 --        on conversion rate and average order value
--- ============================================================
 
--- ─────────────────────────────────────────────
 -- STEP 1: CREATE TABLE & LOAD DATA
--- ─────────────────────────────────────────────
+
 
 CREATE TABLE IF NOT EXISTS ecommerce_sessions (
     session_id              VARCHAR(10) PRIMARY KEY,
@@ -32,9 +30,8 @@ CREATE TABLE IF NOT EXISTS ecommerce_sessions (
 -- Load CSV: COPY ecommerce_sessions FROM 'ecommerce_sessions.csv' CSV HEADER;
 
 
--- ─────────────────────────────────────────────
 -- STEP 2: FULL FUNNEL — OVERVIEW
--- ─────────────────────────────────────────────
+
 
 -- Business Question: What does the overall conversion funnel look like?
 -- Baseline metric before breaking down AI vs non-AI.
@@ -54,9 +51,7 @@ SELECT
 FROM ecommerce_sessions;
 
 
--- ─────────────────────────────────────────────
 -- STEP 3: AI vs NON-AI SESSION CONVERSION
--- ─────────────────────────────────────────────
 
 -- Business Question: Do AI-assisted sessions convert significantly better?
 -- This is the headline metric for the AI product team.
@@ -89,9 +84,7 @@ Expected Insight:
 */
 
 
--- ─────────────────────────────────────────────
 -- STEP 4: INDIVIDUAL AI FEATURE IMPACT
--- ─────────────────────────────────────────────
 
 -- Business Question: Which AI feature drives the most conversion lift?
 -- Helps prioritize feature roadmap investment.
@@ -145,9 +138,7 @@ FROM ecommerce_sessions WHERE used_ai_chatbot = 0
 ORDER BY conversion_rate_pct DESC;
 
 
--- ─────────────────────────────────────────────
 -- STEP 5: FUNNEL STAGE DROP-OFF ANALYSIS
--- ─────────────────────────────────────────────
 
 -- Business Question: At which funnel stage do AI vs non-AI sessions drop off?
 -- Identifies exactly where the AI lift occurs.
@@ -175,9 +166,8 @@ FROM ecommerce_sessions
 GROUP BY session_type;
 
 
--- ─────────────────────────────────────────────
+
 -- STEP 6: CONVERSION BY DEVICE + AI USAGE
--- ─────────────────────────────────────────────
 
 -- Business Question: Does AI help more on mobile vs desktop?
 -- Critical for mobile-first markets like India.
@@ -195,9 +185,7 @@ GROUP BY device_type, ai_usage
 ORDER BY device_type, conversion_rate_pct DESC;
 
 
--- ─────────────────────────────────────────────
 -- STEP 7: TRAFFIC SOURCE QUALITY + AI IMPACT
--- ─────────────────────────────────────────────
 
 -- Business Question: Which channels bring users who engage with AI features?
 -- Helps media buying team optimize for high-AI-engagement audiences.
@@ -217,9 +205,7 @@ GROUP BY traffic_source
 ORDER BY conversion_rate_pct DESC;
 
 
--- ─────────────────────────────────────────────
 -- STEP 8: CATEGORY-WISE AI FEATURE IMPACT
--- ─────────────────────────────────────────────
 
 -- Business Question: Which product categories benefit most from AI?
 -- Category managers can prioritize AI feature rollout order.
@@ -239,9 +225,7 @@ GROUP BY category
 ORDER BY ai_usage_rate_pct DESC;
 
 
--- ─────────────────────────────────────────────
 -- STEP 9: CITY TIER ANALYSIS — AI REACH
--- ─────────────────────────────────────────────
 
 -- Business Question: Is AI adoption skewed toward Tier 1 cities?
 -- Helps inclusion/expansion strategy.
@@ -259,9 +243,8 @@ GROUP BY city_tier, new_vs_returning
 ORDER BY city_tier, conversion_rate_pct DESC;
 
 
--- ─────────────────────────────────────────────
+
 -- STEP 10: REVENUE ATTRIBUTION TO AI FEATURES
--- ─────────────────────────────────────────────
 
 -- Business Question: How much revenue can we attribute to AI features?
 -- The CFO / CPO metric: ₹ value driven by the AI product investment.
@@ -281,11 +264,9 @@ FROM ecommerce_sessions
 WHERE order_placed = 1
 GROUP BY session_type;
 
--- ============================================================
--- END OF PROJECT 2
+-- END OF The PROJECT 
 -- Key Takeaways:
 -- 1. AI-assisted sessions convert 3-5x better than non-AI sessions
 -- 2. All 3 AI features together = highest AOV
 -- 3. Mobile + AI = biggest opportunity in India Tier 1/2 markets
 -- 4. AI chatbot has highest individual conversion lift
--- ============================================================
